@@ -565,7 +565,7 @@ WRITE(*,*) int(C_at), int(i_x), real(x) , real(DUM_y), REALPART(s_yy_phys)
 ! สมมติว่า x, u_y_phys, u_x_phys อยู่ในลูปนี้
 WRITE(10, '(F10.4, ",", 4(E15.7, ","))') x, REAL(u_y_phys), AIMAG(u_y_phys), REAL(u_x_phys), AIMAG(u_x_phys)
 
-END DO  ! จบลูป i_x
+
 
 
 !WRITE(3,*) x, REALPART(u_y_phys), IMAGPART(u_y_phys), REALPART(u_x_phys), IMAGPART(u_x_phys)
@@ -581,7 +581,7 @@ END DO  ! จบลูป i_x
 END DO
 END DO
 
-
+CLOSE(10)
 CLOSE(3)
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -1574,8 +1574,5 @@ CONTAINS
     END SUBROUTINE Gauss_Quad
 
 
-! ---------------------------------------------------------------------
-CLOSE(10)
 
-CLOSE(3)
 END PROGRAM CST_MULTI
