@@ -1,0 +1,28 @@
+name: Compile Fortran Code
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install gfortran
+        run: sudo apt-get update && sudo apt-get install -y gfortran
+
+      - name: Compile Fortran
+        run: |
+          # เปลี่ยนชื่อไฟล์ให้ตรงกับชื่อไฟล์ที่คุณอัปโหลดขึ้นไป
+          gfortran -o solver_app "pointload2dynamics (1).f90"
+          
+      - name: Run solver
+        run: |
+          ./solver_app
+          
+      - name: Upload binary
+        uses: actions/upload-artifact@v3
+        with:
+          name: compiled-solver
+          path: solver_app
