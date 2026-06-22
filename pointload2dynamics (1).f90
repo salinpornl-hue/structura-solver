@@ -556,7 +556,19 @@ s_eq = sqrt( 3.0 * ( 0.5 * (  &
        (1.0/2.0)*(rho(1,C_at)**2.0)*((REALPART(c_xz_phys)**2.0)+(REALPART(c_yz_phys)**2.0)))))
 
 WRITE(*,*) int(C_at), int(i_x), real(x) , real(DUM_y), REALPART(s_yy_phys)
-WRITE(3,*) x, REALPART(u_y_phys), IMAGPART(u_y_phys), REALPART(u_x_phys), IMAGPART(u_x_phys)
+
+! เปิดไฟล์ด้วย UNIT ที่ต้องการ (เช่น 10)
+OPEN(UNIT=10, FILE='output_data.csv', STATUS='REPLACE')
+! เขียน Header ให้ Python รู้จัก
+WRITE(10, *) "x,u_y_real,u_y_imag,u_x_real,u_x_imag"
+
+! เขียนข้อมูลในลูปของคุณ
+! สมมติว่า x, u_y_phys, u_x_phys อยู่ในลูปนี้
+WRITE(10, '(F10.4, ",", 4(E15.7, ","))') x, REALPART(u_y_phys), IMAGPART(u_y_phys), REALPART(u_x_phys), IMAGPART(u_x_phys)
+
+CLOSE(10)
+
+!WRITE(3,*) x, REALPART(u_y_phys), IMAGPART(u_y_phys), REALPART(u_x_phys), IMAGPART(u_x_phys)
 !WRITE(3,*)  x, REALPART(s_yy_phys)
 !REALPART(s_yx_phys), REALPART(c_xz_phys), REALPART(c_yz_phys)    
 !WRITE(3,*)  x, , DUM_y, REALPART(u_x_phys), &
