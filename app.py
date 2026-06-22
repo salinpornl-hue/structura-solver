@@ -9,7 +9,7 @@ st.title("Physical Results Analysis (Fortran + Streamlit)")
 @st.cache_resource
 def compile_fortran():
     # ตรวจสอบชื่อไฟล์ให้ตรงกับบน GitHub ของคุณ
-    fortran_file = "pointload2dynamics (1).f90" 
+    fortran_file = "pointload2dynamics.f90" 
     if os.path.exists(fortran_file):
         try:
             # สั่งคอมไพล์โค้ดเป็นโปรแกรมชื่อ solver_app
